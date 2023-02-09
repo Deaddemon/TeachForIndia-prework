@@ -1,0 +1,10 @@
+.card-footer{
+    border-top: 0 none;
+     
+}
+
+.card-header{
+    border-bottom: 0 none;
+    background-color: white;
+    color:#808080;
+}
