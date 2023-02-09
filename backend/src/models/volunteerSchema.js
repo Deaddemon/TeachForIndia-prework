@@ -8,6 +8,9 @@ import mongoose from "mongoose";
         min: 5,
         max: 100
     } ,
+    slug :{
+        type : String
+    },
     description:{
         type: String,
         required: true,
@@ -26,7 +29,9 @@ import mongoose from "mongoose";
         country: String
     },
     commitment:{
-        type: Number
+        type: Number,
+        min:0,
+        max:24
     },
     email :{
         type : String,

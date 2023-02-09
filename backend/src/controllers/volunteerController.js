@@ -14,6 +14,7 @@ export const createVolunteer= (req, res) =>{
 
     const volunteer = new Volunteer({
         title : title,
+        slug : slugify(title),
         description,
         location,
         commitment,
@@ -29,5 +30,11 @@ export const createVolunteer= (req, res) =>{
         }
     );
 
+
+}
+
+export const getVolunteers =async(req, res) =>{
+        const volunteers = await Volunteer.find();
+        res.json(volunteers);
 
 }
