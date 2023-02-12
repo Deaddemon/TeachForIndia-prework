@@ -10,6 +10,9 @@
     border-color: inherit;
     -webkit-box-shadow: none;
 	box-shadow: none;
-    border-bottom: 2px solid red;
+    //border-bottom: 2px solid #0ec0e2;
+    box-shadow: 0 4px 8px rgba(14, 192, 226, 0.25)
+    , 0 1px 1px rgba(14, 192, 226, 0.22)
+    ;
     
 }

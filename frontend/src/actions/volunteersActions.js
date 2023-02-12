@@ -28,7 +28,7 @@ export const listVolunteers = () => async (dispatch, getState) => {
   };
   
 
-export const createVolunteer= (title , description,commitment , email,address, city,country) => async (
+export const createVolunteer= (title , description,commitment , email) => async (
     dispatch,
     getState
   ) => {
@@ -40,7 +40,7 @@ export const createVolunteer= (title , description,commitment , email,address, c
   
       const { data } = await axios.post(
         `/volunteer/create`,
-        { title , description,commitment , email,address, city,country}
+        { title , description,commitment , email}
       );
   
       dispatch({

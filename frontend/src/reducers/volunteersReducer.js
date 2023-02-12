@@ -26,7 +26,7 @@ export const volunteerListReducer = (
 
 
 export const volunteerCreateReducer = ( 
-    state = { volunteers: []} , action
+    state = { } , action
 ) => {
     switch ( action.type ){
         case VOLUNTEER_CREATE_REQUEST:

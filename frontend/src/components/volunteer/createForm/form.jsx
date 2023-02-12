@@ -1,9 +1,57 @@
-import React from "react";
+import React, {useState} from "react";
 import { Container, Row } from "react-bootstrap";
+import {useDispatch , useSelector  } from 'react-redux';
+
 
 import "./form.css";
+import { createVolunteer } from "../../../actions/volunteersActions";
 
 export const VolunteerForm = (props) => {
+
+  const [title , setTitle] = useState("");
+  const [description , setDescription]  = useState("");
+  const [commitment , setCommitment] = useState("");
+  const [email , setEmail] = useState("");
+  const [address , setAddress] = useState("");
+  const [city , setCity] = useState("");
+  const [country , setCountry] = useState("");
+
+  const resetHandler = () => {
+    setTitle("");
+    setDescription("");
+    setCommitment("");
+    setEmail("");
+    setAddress("");
+    setCity("");
+    setCountry("");
+  };
+  
+ 
+  
+   
+  const dispatch = useDispatch();
+
+  const volunteerCreate = useSelector( (state) => state.volunteerCreate);
+  const { loading , error , volunteer} = volunteerCreate;
+
+ 
+  const submitHandler = (e) => {
+    e.preventDefault();
+     
+    if( !title || !description || !commitment || !email ) {
+      alert("Fill the entries before submitting!")
+      console.log(title);
+      console.log(description);
+      console.log(commitment);
+      console.log(email);
+      return ;
+    }
+    dispatch( createVolunteer( title , description,commitment , email));
+    alert("Opportunity is posted!")
+    resetHandler();
+    
+  }
+
   return (
     <>
       <Container>
@@ -25,41 +73,41 @@ export const VolunteerForm = (props) => {
           <br />
         </Row>
       </Container>
-      <form onSubmit={props.onSubmit}>
+      <form onSubmit={submitHandler}>
         <ul role="list">
           <li>
             <label for="title">Title</label>
-            <input type="text" id="title" value={props.title}  onChange={props.handleTitleChange}></input>
+            <input type="text" id="title" value={title}  onChange={(e) => setTitle(e.target.value)}></input>
           </li>
 
           <li>
             <label for="descrition">Descrition</label>
-            <textarea id="descrition" value={props.description} onChange={props.handleDescriptionChange}></textarea>
+            <textarea id="descrition" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
           </li>
 
           <li>
             <label for="commitment">No of hours/day </label>
-            <input type="Number" id="commitment" value={props.commitment} onChange={props.handleCommitmentChange}></input>
+            <input type="Number" id="commitment" value={commitment} onChange={(e)=> setCommitment(e.target.value)}></input>
           </li>
 
           <li>
             <label for="email">Email address</label>
-            <input type="email" id="email" value={props.email} onChange={props.handleEmailChange}></input>
+            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
           </li>
 
           <li col-1>
             <label for="address">Street address</label>
-            <input type="text" id="address" value={props.address} onChange={props.handleAddressChange}></input>
+            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)}></input>
           </li>
 
           <li>
             <label for="city">City</label>
-            <input type="text" id="city" value={props.city} onChange={props.handleCityChange}></input>
+            <input type="text" id="city" value={city} onChange={(e)=> setCity(e.target.value) }></input>
           </li>
 
           <li>
             <label for="country">Country</label>
-            <input type="text" id="country" value={props.country} onChange={props.handleCountryChange}></input>
+            <input type="text" id="country" value={country} onChange={(e)=> setCountry(e.target.value)}></input>
           </li>
 
           <li>
@@ -74,7 +122,7 @@ export const VolunteerForm = (props) => {
           </li>
 
           <li>
-            <button onClick={props.resetHandler}>Submit</button>
+            <button  >Submit</button>
           </li>
         </ul>
       </form>
