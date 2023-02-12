@@ -2,7 +2,7 @@
 node_modules
 /.pnp
  
-
+.env
 # testing
 /coverage
 
